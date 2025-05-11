@@ -67,4 +67,23 @@ class MainActivity : AppCompatActivity() {
             isResult = false
         }
     }
+
+    private fun configurarMemoria(display: TextView) {
+        findViewById<TextView>(R.id.btnMR).setOnClickListener {
+            display.text = mr.toString()
+            isResult = true
+        }
+
+        findViewById<TextView>(R.id.btnMmais).setOnClickListener {
+            mr += display.text.toString().toDoubleOrNull() ?: 0.0
+            display.text = "0"
+            isResult = true
+        }
+
+        findViewById<TextView>(R.id.btnMmenos).setOnClickListener {
+            mr -= display.text.toString().toDoubleOrNull() ?: 0.0
+            display.text = "0"
+            isResult = true
+        }
+    }
 }
