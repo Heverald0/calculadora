@@ -177,4 +177,28 @@ class MainActivity : AppCompatActivity() {
         findViewById<TextView>(R.id.btnDividir).setOnClickListener { setOperacao(4) }
     }
 
+     private fun configurarResultado(display: TextView) {
+        findViewById<TextView>(R.id.btnResultado).setOnClickListener {
+            temp2 = display.text.toString().toDoubleOrNull() ?: 0.0
+
+            result = when (operacao) {
+                1 -> temp1 + temp2
+                2 -> temp1 - temp2
+                3 -> temp1 * temp2
+                4 -> if (temp2 != 0.0) temp1 / temp2 else Double.NaN
+                5 -> temp1.pow(temp2)
+                else -> 0.0
+            }
+
+            display.text = result.toString()
+            isResult = true
+
+            // reset temporários
+            temp1 = 0.0
+            temp2 = 0.0
+            operacao = 0
+            result = 0.0
+        }
+    }
+
 }
