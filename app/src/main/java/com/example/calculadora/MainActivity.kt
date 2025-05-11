@@ -86,4 +86,95 @@ class MainActivity : AppCompatActivity() {
             isResult = true
         }
     }
+
+     private fun configurarFuncoesCientificas(display: TextView) {
+        val getValue = { display.text.toString().toDoubleOrNull() ?: 0.0 }
+
+        findViewById<TextView>(R.id.btnSen).setOnClickListener {
+            display.text = sin(Math.toRadians(getValue())).toString()
+            isResult = true
+        }
+
+        findViewById<TextView>(R.id.btnCos).setOnClickListener {
+            display.text = cos(Math.toRadians(getValue())).toString()
+            isResult = true
+        }
+
+        findViewById<TextView>(R.id.btnTan).setOnClickListener {
+            display.text = tan(Math.toRadians(getValue())).toString()
+            isResult = true
+        }
+
+        findViewById<TextView>(R.id.btnSqrt).setOnClickListener {
+            display.text = sqrt(getValue()).toString()
+            isResult = true
+        }
+
+        findViewById<TextView>(R.id.btnQuadrado).setOnClickListener {
+            val valor = getValue()
+            display.text = (valor * valor).toString()
+            isResult = true
+        }
+
+        findViewById<TextView>(R.id.btnPotencia).setOnClickListener {
+            temp1 = getValue()
+            operacao = 5
+            display.text = "0"
+            isResult = false
+        }
+
+        findViewById<TextView>(R.id.btnFatorial).setOnClickListener {
+            val n = display.text.toString().toIntOrNull() ?: 0
+            display.text = if (n < 0) "Erro" else (1..n).fold(1L) { acc, i -> acc * i }.toString()
+            isResult = true
+        }
+
+        findViewById<TextView>(R.id.btnLn).setOnClickListener {
+            val valor = getValue().coerceAtLeast(1e-10) // evitar ln(0)
+            display.text = ln(valor).toString()
+            isResult = true
+        }
+
+        findViewById<TextView>(R.id.btnLog).setOnClickListener {
+            val valor = getValue().coerceAtLeast(1e-10)
+            display.text = log10(valor).toString()
+            isResult = true
+        }
+
+        findViewById<TextView>(R.id.btnE).setOnClickListener {
+            display.text = E.toString()
+            isResult = true
+        }
+
+        findViewById<TextView>(R.id.btnPi).setOnClickListener {
+            display.text = PI.toString()
+            isResult = true
+        }
+
+        findViewById<TextView>(R.id.btnSinal).setOnClickListener {
+            display.text = (-getValue()).toString()
+            isResult = true
+        }
+
+        findViewById<TextView>(R.id.btnInverso).setOnClickListener {
+            val valor = getValue()
+            display.text = if (valor != 0.0) (1 / valor).toString() else "Erro"
+            isResult = true
+        }
+    }
+
+    private fun configurarOperacoes(display: TextView) {
+        fun setOperacao(op: Int) {
+            temp1 = display.text.toString().toDoubleOrNull() ?: 0.0
+            operacao = op
+            display.text = "0"
+            isResult = false
+        }
+
+        findViewById<TextView>(R.id.btnMais).setOnClickListener { setOperacao(1) }
+        findViewById<TextView>(R.id.btnMenos).setOnClickListener { setOperacao(2) }
+        findViewById<TextView>(R.id.btnVezes).setOnClickListener { setOperacao(3) }
+        findViewById<TextView>(R.id.btnDividir).setOnClickListener { setOperacao(4) }
+    }
+
 }
