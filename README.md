@@ -28,4 +28,6 @@ Data: 11/05/2025 (11 de Maio de 2025)
 
 #Licença
 Este projeto é de caráter educacional, portanto sem fins lucrativos
- 
+
+Link do vídeo mostrando o código com comentários a respeito da estruturação do mesmo -> https://drive.google.com/file/d/1qUeI0Ey7xkDYoQf_N6pR4srMFcjuktIk/view?usp=drive_link.
+
