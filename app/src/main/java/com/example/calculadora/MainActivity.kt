@@ -36,4 +36,35 @@ class MainActivity : AppCompatActivity() {
         configurarOperacoes(display)
         configurarResultado(display)
     }
+
+     private fun configurarNumeros(display: TextView) {
+        val numeros = mapOf(
+            R.id.btnZero to "0", R.id.btnUm to "1", R.id.btnDois to "2",
+            R.id.btnTres to "3", R.id.btnQuatro to "4", R.id.btnCinco to "5",
+            R.id.btnSeis to "6", R.id.btnSete to "7", R.id.btnOito to "8", R.id.btnNove to "9"
+        )
+
+        numeros.forEach { (id, valor) ->
+            findViewById<TextView>(id).setOnClickListener {
+                display.text = if (isResult || display.text.toString() == "0") valor
+                else display.text.toString() + valor
+                isResult = false
+            }
+        }
+
+        findViewById<TextView>(R.id.btnVirgula).setOnClickListener {
+            if (!display.text.contains(".")) {
+                display.append(".")
+            }
+        }
+
+        findViewById<TextView>(R.id.btnCE).setOnClickListener {
+            display.text = "0"
+            temp1 = 0.0
+            temp2 = 0.0
+            result = 0.0
+            operacao = 0
+            isResult = false
+        }
+    }
 }
